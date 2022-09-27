@@ -1,0 +1,207 @@
+---
+title: "01-Import_and_clean_data"
+author: "Nicki lentz"
+date: "15/3/2022"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+  markdown: 
+    wrap: 72
+---
+
+Tuesday NIU 2 startTime = 08:30:00 endTime = 09:16:00
+
+Tuesday NIU 3 startTime = 10:19:00 endTime = 11:15:00
+
+Wednesday NIU 1 startTime = 08:30:00 endTime = 09:23:00
+
+Thursday NIU 2 startTime = 08:26:00 endTime = 09:26:00
+
+Thursday NIU 3 startTime = 10:20:00 endTime = 11:20:00
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(patchwork)
+source("Scripts/cleanFMPdata.R")
+source("Scripts/importWithID_gps.R")
+source("Scripts/importWithID_imu.R")
+source("Scripts/extractAthleteName.R")
+'%!in%' <- function(x,y)!('%in%'(x,y))
+
+TuesdayNIU2_names <- extractAthleteName(list.files(path = "Data/RawData/10hz_NIU2_Tuesday"))
+
+TuesdayNIU3_names <- extractAthleteName(list.files(path = "Data/RawData/10hz_NIU3_Tuesday"))
+
+WednesdayNIU1_names <- extractAthleteName(list.files(path = "Data/RawData/10hz_NIU1_Wednesday"))
+
+ThursdayNIU2_names <- extractAthleteName(list.files(path = "Data/RawData/10hz_NIU2_Thursday"))
+
+ThursdayNIU3_names <- extractAthleteName(list.files(path = "Data/RawData/10hz_NIU3_Thursday"))
+```
+
+```{r setup, include=FALSE}
+TuesdayNIU2gps <- importWithID_gps(path = "Data/RawData/10hz_NIU2_Tuesday", 
+                                   id_names = TuesdayNIU2_names,
+                                   startTime = as.numeric(lubridate::as_datetime("2022-02-15 08:30:00 UTC")),
+                                   endTime = as.numeric(lubridate::as_datetime("2022-02-15 09:16:00 UTC")))
+
+TuesdayNIU2imu <- importWithID_imu(path = "Data/RawData/100hz_NIU2_Tuesday", 
+                                   id_names = TuesdayNIU2_names,
+                                   startTime = as.numeric(lubridate::as_datetime("2022-02-15 08:30:00 UTC")),
+                                   endTime = as.numeric(lubridate::as_datetime("2022-02-15 09:16:00 UTC")))
+
+TuesdayNIU3gps <- importWithID_gps(path = "Data/RawData/10hz_NIU3_Tuesday", 
+                                   id_names = TuesdayNIU3_names,
+                                   startTime = as.numeric(lubridate::as_datetime("2022-02-15 10:19:00 UTC")),
+                                   endTime = as.numeric(lubridate::as_datetime("2022-02-15 11:15:00 UTC")))
+
+TuesdayNIU3imu <- importWithID_imu(path = "Data/RawData/100hz_NIU3_Tuesday", 
+                                   id_names = TuesdayNIU3_names,
+                                   startTime = as.numeric(lubridate::as_datetime("2022-02-15 10:19:00 UTC")),
+                                   endTime = as.numeric(lubridate::as_datetime("2022-02-15 11:15:00 UTC")))
+
+FMPTuesday <- data.table::fread("Data/RawData/FMP_Tuesday.csv") %>%
+  janitor::clean_names() %>% 
+  mutate(athlete = sub(".*? ", "", athlete))
+
+FMPTuesday$movement_type <- factor(FMPTuesday$movement_type, levels = c("Very Low Intensity",
+                                                          "Low Intensity",
+                                                          "Dynamic Medium Intensity",
+                                                          "Dynamic High Intensity",
+                                                          "Running Medium Intensity",
+                                                          "Running High Intensity"))
+
+WednesdayNIU1gps <- importWithID_gps(path = "Data/RawData/10hz_NIU1_Wednesday", 
+                                   id_names = WednesdayNIU1_names,
+                                   startTime = as.numeric(lubridate::as_datetime("2022-02-16 08:30:00 UTC")),
+                                   endTime = as.numeric(lubridate::as_datetime("2022-02-16 09:23:00 UTC")))
+
+WednesdayNIU1imu <- importWithID_imu(path = "Data/RawData/100hz_NIU1_Wednesday", 
+                                   id_names = WednesdayNIU1_names,
+                                   startTime = as.numeric(lubridate::as_datetime("2022-02-16 08:30:00 UTC")),
+                                   endTime = as.numeric(lubridate::as_datetime("2022-02-16 09:23:00 UTC")))
+
+FMPWednesday <- data.table::fread("Data/RawData/FMP_Wednesday.csv") %>%
+  janitor::clean_names() %>% 
+  mutate(athlete = sub(".*? ", "", athlete),
+         athlete = as.factor(athlete))
+
+FMPWednesday$movement_type <- factor(FMPWednesday$movement_type, levels = c("Very Low Intensity",
+                                                          "Low Intensity",
+                                                          "Dynamic Medium Intensity",
+                                                          "Dynamic High Intensity",
+                                                          "Running Medium Intensity",
+                                                          "Running High Intensity"))
+
+ThursdayNIU2gps <- importWithID_gps(path = "Data/RawData/10hz_NIU2_Thursday", 
+                                   id_names = ThursdayNIU2_names,
+                                   startTime = as.numeric(lubridate::as_datetime("2022-02-17 08:26:00 UTC")),
+                                   endTime = as.numeric(lubridate::as_datetime("2022-02-17 09:26:00 UTC")))
+
+ThursdayNIU2imu <- importWithID_imu(path = "Data/RawData/100hz_NIU2_Thursday", 
+                                   id_names = ThursdayNIU2_names,
+                                   startTime = as.numeric(lubridate::as_datetime("2022-02-17 08:26:00 UTC")),
+                                   endTime = as.numeric(lubridate::as_datetime("2022-02-17 09:26:00 UTC")))
+
+ThursdayNIU3gps <- importWithID_gps(path = "Data/RawData/10hz_NIU3_Thursday", 
+                                   id_names = ThursdayNIU3_names,
+                                   startTime = as.numeric(lubridate::as_datetime("2022-02-17 10:20:00 UTC")),
+                                   endTime = as.numeric(lubridate::as_datetime("2022-02-17 11:20:00 UTC")))
+
+ThursdayNIU3imu <- importWithID_imu(path = "Data/RawData/100hz_NIU3_Thursday", 
+                                   id_names = ThursdayNIU3_names,
+                                   startTime = as.numeric(lubridate::as_datetime("2022-02-17 10:20:00 UTC")),
+                                   endTime = as.numeric(lubridate::as_datetime("2022-02-17 11:20:00 UTC")))
+
+FMPThursday <- data.table::fread("Data/RawData/FMP_Thursday.csv") %>%
+  janitor::clean_names() %>% 
+  mutate(athlete = sub(".*? ", "", athlete),
+         athlete = as.factor(athlete))
+
+FMPThursday$movement_type <- factor(FMPThursday$movement_type, levels = c("Very Low Intensity",
+                                                          "Low Intensity",
+                                                          "Dynamic Medium Intensity",
+                                                          "Dynamic High Intensity",
+                                                          "Running Medium Intensity",
+                                                          "Running High Intensity"))
+
+
+#the pattern is looking for any character zero or more times (.*) up until the first space, and then capturing the one or more #characters ((.+)) after that first space. The ? after .* makes it "lazy" rather than "greedy" and is what makes it stop at the first #space found. So, the .*? matches everything before the first space, the space matches the first space found.
+
+# Jota & Wiktor Stribizew https://stackoverflow.com/questions/32767164/use-gsub-remove-all-string-before-first-white-space-in-r
+```
+
+```{r}
+FMPTuesdayNIU <- tibble()
+for (i in TuesdayNIU2_names[TuesdayNIU2_names %in% unique(FMPTuesday$athlete)]){
+  FMPfilt <- cleanFMPdata(FMPTuesday %>% filter(athlete == i)) %>% 
+    as_tibble()
+  FMPTuesdayNIU <- rbind(FMPTuesdayNIU, FMPfilt)
+}
+
+FMPTuesdayNIU2 <- FMPTuesdayNIU %>% 
+  arrange(athlete, unixTime) %>% 
+  filter(unixTime >= as.numeric(lubridate::as_datetime("2022-02-15 08:30:00 UTC"))-1,
+         unixTime <= as.numeric(lubridate::as_datetime("2022-02-15 09:16:01 UTC")))
+
+FMPTuesdayNIU3 <- FMPTuesdayNIU %>% 
+  arrange(athlete, unixTime) %>% 
+  filter(unixTime >= as.numeric(lubridate::as_datetime("2022-02-15 10:19:00 UTC"))-1,
+         unixTime <= as.numeric(lubridate::as_datetime("2022-02-15 11:15:01 UTC")),
+         #filtering out Orange-3 as she left the training early
+         athlete != "Orange-3")
+
+FMPWednesdayNIU <- tibble()
+for (i in WednesdayNIU1_names[WednesdayNIU1_names %in% unique(FMPWednesday$athlete)]){
+  FMPfilt <- cleanFMPdata(FMPWednesday %>% filter(athlete == i)) %>% 
+    as_tibble()
+  FMPWednesdayNIU <- rbind(FMPWednesdayNIU, FMPfilt)
+}
+
+FMPWednesdayNIU1 <- FMPWednesdayNIU %>% 
+  arrange(athlete, unixTime) %>% 
+  filter(unixTime >= as.numeric(lubridate::as_datetime("2022-02-16 08:30:00 UTC")),
+         unixTime <= as.numeric(lubridate::as_datetime("2022-02-16 09:23:01 UTC")))
+
+FMPThursdayNIU <- tibble()
+for (i in ThursdayNIU2_names[ThursdayNIU2_names %in% unique(FMPThursday$athlete)]){
+  FMPfilt <- cleanFMPdata(FMPThursday %>% filter(athlete == i)) %>% 
+    as_tibble()
+  FMPThursdayNIU <- rbind(FMPThursdayNIU, FMPfilt)
+}
+
+FMPThursdayNIU2 <- FMPThursdayNIU %>% 
+  arrange(athlete, unixTime) %>% 
+  filter(unixTime >= as.numeric(lubridate::as_datetime("2022-02-17 08:26:00 UTC")),
+         unixTime <= as.numeric(lubridate::as_datetime("2022-02-17 09:26:01 UTC")),
+         #filtering out orange-6 and orange-10
+         athlete %!in% c("Orange-6", "Orange-10"))
+
+FMPThursdayNIU3 <- FMPThursdayNIU %>% 
+  arrange(athlete, unixTime) %>% 
+  filter(unixTime >= as.numeric(lubridate::as_datetime("2022-02-17 10:20:00 UTC")),
+         unixTime <= as.numeric(lubridate::as_datetime("2022-02-17 11:20:01 UTC")))
+
+```
+
+```{r}
+data.table::fwrite(FMPTuesdayNIU2, "Data/ProcessedData/FMPTuesdayNIU2.csv")
+data.table::fwrite(FMPTuesdayNIU3, "Data/ProcessedData/FMPTuesdayNIU3.csv")
+data.table::fwrite(FMPWednesdayNIU1, "Data/ProcessedData/FMPWednesdayNIU1.csv")
+data.table::fwrite(FMPThursdayNIU2, "Data/ProcessedData/FMPThursdayNIU2.csv")
+data.table::fwrite(FMPThursdayNIU3, "Data/ProcessedData/FMPThursdayNIU3.csv")
+
+data.table::fwrite(TuesdayNIU2gps, "Data/ProcessedData/TuesdayNIU2gps.csv")
+data.table::fwrite(TuesdayNIU3gps, "Data/ProcessedData/TuesdayNIU3gps.csv")
+data.table::fwrite(WednesdayNIU1gps, "Data/ProcessedData/WednesdayNIU1gps.csv")
+data.table::fwrite(ThursdayNIU2gps, "Data/ProcessedData/ThursdayNIU2gps.csv")
+data.table::fwrite(ThursdayNIU3gps, "Data/ProcessedData/ThursdayNIU3gps.csv")
+
+data.table::fwrite(TuesdayNIU2imu, "Data/ProcessedData/TuesdayNIU2imu.csv")
+data.table::fwrite(TuesdayNIU3imu, "Data/ProcessedData/TuesdayNIU3imu.csv")
+data.table::fwrite(WednesdayNIU1imu, "Data/ProcessedData/WednesdayNIU1imu.csv")
+data.table::fwrite(ThursdayNIU2imu, "Data/ProcessedData/ThursdayNIU2imu.csv")
+data.table::fwrite(ThursdayNIU3imu, "Data/ProcessedData/ThursdayNIU3imu.csv")
+
+```
