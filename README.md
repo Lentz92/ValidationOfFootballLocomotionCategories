@@ -24,16 +24,20 @@ were also found to be related to players’ running style and size. Thus, it was
 for the algorithm to increase the validity of the FMP algorithm.
 
 ### Data collection sketch
-![Sketch of the linear (A to E) and non-linear (F) drills used for locomotion data collection. Each linear
+Sketch of the linear (A to E) and non-linear (F) drills used for locomotion data collection. Each linear
 velocity was performed four times while the non-linear locomotion drill was executed three times. The first time
 they passed a cone every 3 s; the second time they went all out; the third time they went all out but finished after
-half of the circle.](allLocomotion.png)
+half of the circle.
+
+![locomotionSketch](allLocomotion.png)
 
 ### Scatterpieplot results 
-![Scatterplot where each dot is a pie plot illustrating the locomotion categorization distribution of a
+Scatterplot where each dot is a pie plot illustrating the locomotion categorization distribution of a
 single participant. The y-axis is the percentage of correct predictions relative to the drill, and the x-axis is the
 drill performed, with vertical dashed lines to distinguish among the drills. The horizontal distribution of the pies
-between each category line is a random jitter and is only for visualization purposes.](scatterPiePlot.png)
+between each category line is a random jitter and is only for visualization purposes.
+
+![scatterpieplot](scatterPiePlot.png)
 
 
 ### Funding
