@@ -1,16 +1,3 @@
-##  ---------------------------
-##  02-Validate Locomotion
-##
-##  Following script will use the cleaned FMP data from 01-DataCleaning
-##  and validate the locomotion predictions (not the intensity) from FMP.
-##  
-##  Author: "Nicki lentz"
-##  Date: "15/3/2022"
-##
-##  Email: nickilentz@hotmail.com
-## ---------------------------
-
-  
 library(tidyverse)
 
 ## -- Import FMP Data -- ##
@@ -125,10 +112,11 @@ Tuesday_NIU2_Walk5 <- locomotionFMPtruth(FMPTuesdayNIU2, eventIntensity = "low",
                                          endTime = lubridate::as_datetime("2022-02-15 08:34:43 UTC"))
 
 
-Tuesday_NIU2_Walk <- rbind(Tuesday_NIU2_Walk2,
-                           Tuesday_NIU2_Walk3,
-                           Tuesday_NIU2_Walk4,
-                           Tuesday_NIU2_Walk5)
+Tuesday_NIU2_Walk <- rbind(Tuesday_NIU2_Walk2 %>% mutate(iteration = 1),
+                           Tuesday_NIU2_Walk3 %>% mutate(iteration = 2),
+                           Tuesday_NIU2_Walk4 %>% mutate(iteration = 3),
+                           Tuesday_NIU2_Walk5 %>% mutate(iteration = 4))
+
 
 ## -- Insert truth for TuesdayNIU2 Run 10m/3sec -- ##
 
@@ -149,10 +137,10 @@ Tuesday_NIU2_Run10_5  <- locomotionFMPtruth(FMPTuesdayNIU2, eventIntensity = "lo
                                             endTime = lubridate::as_datetime("2022-02-15 08:39:34 UTC"))
 
 
-Tuesday_NIU2_Run10 <- rbind(Tuesday_NIU2_Run10_2,
-                            Tuesday_NIU2_Run10_3,
-                            Tuesday_NIU2_Run10_4,
-                            Tuesday_NIU2_Run10_5)
+Tuesday_NIU2_Run10 <- rbind(Tuesday_NIU2_Run10_2 %>% mutate(iteration = 1),
+                            Tuesday_NIU2_Run10_3 %>% mutate(iteration = 2),
+                            Tuesday_NIU2_Run10_4 %>% mutate(iteration = 3),
+                            Tuesday_NIU2_Run10_5 %>% mutate(iteration = 4))
 
 ## -- Insert truth for TuesdayNIU2 Run 15m/3sec -- ##
 
@@ -173,10 +161,10 @@ Tuesday_NIU2_Run15_5  <- locomotionFMPtruth(FMPTuesdayNIU2, eventIntensity = "lo
                                             endTime = lubridate::as_datetime("2022-02-15 08:47:00 UTC"))
 
 
-Tuesday_NIU2_Run15 <- rbind(Tuesday_NIU2_Run15_2,
-                            Tuesday_NIU2_Run15_3,
-                            Tuesday_NIU2_Run15_4,
-                            Tuesday_NIU2_Run15_5)
+Tuesday_NIU2_Run15 <- rbind(Tuesday_NIU2_Run15_2 %>% mutate(iteration = 1),
+                            Tuesday_NIU2_Run15_3 %>% mutate(iteration = 2),
+                            Tuesday_NIU2_Run15_4 %>% mutate(iteration = 3),
+                            Tuesday_NIU2_Run15_5 %>% mutate(iteration = 4))
 
 ## -- Insert truth for TuesdayNIU2 Medium Dynamic -- ##
 
@@ -478,10 +466,10 @@ Tuesday_NIU3_Walk5 <- locomotionFMPtruth(FMPTuesdayNIU3, eventIntensity = "low",
                                          endTime = lubridate::as_datetime("2022-02-15 10:23:30 UTC"))
 
 
-Tuesday_NIU3_Walk <- rbind(Tuesday_NIU3_Walk2,
-                           Tuesday_NIU3_Walk3,
-                           Tuesday_NIU3_Walk4,
-                           Tuesday_NIU3_Walk5)
+Tuesday_NIU3_Walk <- rbind(Tuesday_NIU3_Walk2 %>% mutate(iteration = 1),
+                           Tuesday_NIU3_Walk3 %>% mutate(iteration = 2),
+                           Tuesday_NIU3_Walk4 %>% mutate(iteration = 3),
+                           Tuesday_NIU3_Walk5 %>% mutate(iteration = 4))
 
 
 ## -- Insert truth for TuesdayNIU3 Run 10m/3sec -- ##
@@ -503,10 +491,10 @@ Tuesday_NIU3_Run10_6  <- locomotionFMPtruth(FMPTuesdayNIU3, eventIntensity = "me
                                             endTime = as.numeric(lubridate::as_datetime("2022-02-15 10:29:01 UTC")))
 
 
-Tuesday_NIU3_Run10 <- rbind(Tuesday_NIU3_Run10_3,
-                            Tuesday_NIU3_Run10_4,
-                            Tuesday_NIU3_Run10_5,
-                            Tuesday_NIU3_Run10_6)
+Tuesday_NIU3_Run10 <- rbind(Tuesday_NIU3_Run10_3 %>% mutate(iteration = 1),
+                            Tuesday_NIU3_Run10_4 %>% mutate(iteration = 2),
+                            Tuesday_NIU3_Run10_5 %>% mutate(iteration = 3),
+                            Tuesday_NIU3_Run10_6 %>% mutate(iteration = 4))
 
 
 ## -- Insert truth for TuesdayNIU3 Run 15m/3sec -- ##
@@ -528,10 +516,10 @@ Tuesday_NIU3_Run15_5  <- locomotionFMPtruth(FMPTuesdayNIU3, eventIntensity = "hi
                                             endTime = as.numeric(lubridate::as_datetime("2022-02-15 10:41:04 UTC")))
 
 
-Tuesday_NIU3_Run15 <- rbind(Tuesday_NIU3_Run15_2,
-                            Tuesday_NIU3_Run15_3,
-                            Tuesday_NIU3_Run15_4,
-                            Tuesday_NIU3_Run15_5)
+Tuesday_NIU3_Run15 <- rbind(Tuesday_NIU3_Run15_2 %>% mutate(iteration = 1),
+                            Tuesday_NIU3_Run15_3 %>% mutate(iteration = 2),
+                            Tuesday_NIU3_Run15_4 %>% mutate(iteration = 3),
+                            Tuesday_NIU3_Run15_5 %>% mutate(iteration = 4))
 
 
 
@@ -752,10 +740,10 @@ Wednesday_NIU1_Run10_4  <- locomotionFMPtruth(FMPWednesdayNIU1, eventIntensity =
                                               endTime = as.numeric(lubridate::as_datetime("2022-02-16 08:34:10 UTC")))
 
 
-Wednesday_NIU1_Run10 <- rbind(Wednesday_NIU1_Run10_1,
-                              Wednesday_NIU1_Run10_2,
-                              Wednesday_NIU1_Run10_3,
-                              Wednesday_NIU1_Run10_4)
+Wednesday_NIU1_Run10 <- rbind(Wednesday_NIU1_Run10_1 %>% mutate(iteration = 1),
+                              Wednesday_NIU1_Run10_2 %>% mutate(iteration = 2),
+                              Wednesday_NIU1_Run10_3 %>% mutate(iteration = 3),
+                              Wednesday_NIU1_Run10_4 %>% mutate(iteration = 4))
 
 
 
@@ -778,10 +766,10 @@ Wednesday_NIU1_Run15_4  <- locomotionFMPtruth(FMPWednesdayNIU1, eventIntensity =
                                               endTime = as.numeric(lubridate::as_datetime("2022-02-16 08:41:51 UTC")))
 
 
-Wednesday_NIU1_Run15 <- rbind(Wednesday_NIU1_Run15_1,
-                              Wednesday_NIU1_Run15_2,
-                              Wednesday_NIU1_Run15_3,
-                              Wednesday_NIU1_Run15_4)
+Wednesday_NIU1_Run15 <- rbind(Wednesday_NIU1_Run15_1 %>% mutate(iteration = 1),
+                              Wednesday_NIU1_Run15_2 %>% mutate(iteration = 2),
+                              Wednesday_NIU1_Run15_3 %>% mutate(iteration = 3),
+                              Wednesday_NIU1_Run15_4 %>% mutate(iteration = 4))
 
 
 ## -- Insert truth for wednesdayNIU3 Run 16.5m/3sec -- ##
@@ -803,10 +791,10 @@ Wednesday_NIU1_Run16_4  <- locomotionFMPtruth(FMPWednesdayNIU1, eventIntensity =
                                               endTime = as.numeric(lubridate::as_datetime("2022-02-16 08:48:34 UTC")))
 
 
-Wednesday_NIU1_Run16 <- rbind(Wednesday_NIU1_Run16_1,
-                              Wednesday_NIU1_Run16_2,
-                              Wednesday_NIU1_Run16_3,
-                              Wednesday_NIU1_Run16_4)
+Wednesday_NIU1_Run16 <- rbind(Wednesday_NIU1_Run16_1 %>% mutate(iteration = 1),
+                              Wednesday_NIU1_Run16_2 %>% mutate(iteration = 2),
+                              Wednesday_NIU1_Run16_3 %>% mutate(iteration = 3),
+                              Wednesday_NIU1_Run16_4 %>% mutate(iteration = 4))
 
 
 ## -- Insert truth for wednesdayNIU3 Run 18m/3sec -- ##
@@ -828,10 +816,10 @@ Wednesday_NIU1_Run18_4  <- locomotionFMPtruth(FMPWednesdayNIU1, eventIntensity =
                                               endTime = as.numeric(lubridate::as_datetime("2022-02-16 08:56:08 UTC")))
 
 
-Wednesday_NIU1_Run18 <- rbind(Wednesday_NIU1_Run18_1,
-                              Wednesday_NIU1_Run18_2,
-                              Wednesday_NIU1_Run18_3,
-                              Wednesday_NIU1_Run18_4)
+Wednesday_NIU1_Run18 <- rbind(Wednesday_NIU1_Run18_1 %>% mutate(iteration = 1),
+                              Wednesday_NIU1_Run18_2 %>% mutate(iteration = 2),
+                              Wednesday_NIU1_Run18_3 %>% mutate(iteration = 3),
+                              Wednesday_NIU1_Run18_4 %>% mutate(iteration = 4))
 
 
 ## -- Insert truth for ThursdayNIU2 Run 15m/3sec -- ##
@@ -848,9 +836,9 @@ Thursday_NIU2_Run15_3  <- locomotionFMPtruth(FMPThursdayNIU2, eventIntensity = "
                                              startTime = as.numeric(lubridate::as_datetime("2022-02-17 08:27:01 UTC")),
                                              endTime = as.numeric(lubridate::as_datetime("2022-02-17 08:27:07 UTC")))
 
-Thursday_NIU2_Run15 <- rbind(Thursday_NIU2_Run15_1,
-                             Thursday_NIU2_Run15_2,
-                             Thursday_NIU2_Run15_3)
+Thursday_NIU2_Run15 <- rbind(Thursday_NIU2_Run15_1 %>% mutate(iteration = 1),
+                             Thursday_NIU2_Run15_2 %>% mutate(iteration = 2),
+                             Thursday_NIU2_Run15_3 %>% mutate(iteration = 3))
 
 
 
@@ -868,9 +856,9 @@ Thursday_NIU2_Run16_3  <- locomotionFMPtruth(FMPThursdayNIU2, eventIntensity = "
                                              startTime = as.numeric(lubridate::as_datetime("2022-02-17 08:30:52 UTC")),
                                              endTime = as.numeric(lubridate::as_datetime("2022-02-17 08:30:58 UTC")))
 
-Thursday_NIU2_Run16 <- rbind(Thursday_NIU2_Run16_1,
-                             Thursday_NIU2_Run16_2,
-                             Thursday_NIU2_Run16_3)
+Thursday_NIU2_Run16 <- rbind(Thursday_NIU2_Run16_1 %>% mutate(iteration = 1),
+                             Thursday_NIU2_Run16_2 %>% mutate(iteration = 2),
+                             Thursday_NIU2_Run16_3 %>% mutate(iteration = 3))
 
 
 
@@ -888,9 +876,9 @@ Thursday_NIU2_Run18_3  <- locomotionFMPtruth(FMPThursdayNIU2, eventIntensity = "
                                              startTime = as.numeric(lubridate::as_datetime("2022-02-17 08:34:07 UTC")),
                                              endTime = as.numeric(lubridate::as_datetime("2022-02-17 08:34:13 UTC")))
 
-Thursday_NIU2_Run18 <- rbind(Thursday_NIU2_Run18_1,
-                             Thursday_NIU2_Run18_2,
-                             Thursday_NIU2_Run18_3)
+Thursday_NIU2_Run18 <- rbind(Thursday_NIU2_Run18_1 %>% mutate(iteration = 1),
+                             Thursday_NIU2_Run18_2 %>% mutate(iteration = 2),
+                             Thursday_NIU2_Run18_3 %>% mutate(iteration = 3))
 
 
 ## -- Insert truth for ThursdayNIU3 Run 15m/3sec -- ##
@@ -908,9 +896,9 @@ Thursday_NIU3_Run15_3  <- locomotionFMPtruth(FMPThursdayNIU3, eventIntensity = "
                                              endTime = as.numeric(lubridate::as_datetime("2022-02-17 11:11:24 UTC")))
 
 
-Thursday_NIU3_Run15 <- rbind(Thursday_NIU3_Run15_1,
-                             Thursday_NIU3_Run15_2,
-                             Thursday_NIU3_Run15_3)
+Thursday_NIU3_Run15 <- rbind(Thursday_NIU3_Run15_1 %>% mutate(iteration = 1),
+                             Thursday_NIU3_Run15_2 %>% mutate(iteration = 2),
+                             Thursday_NIU3_Run15_3 %>% mutate(iteration = 3))
 
 
 ## -- Insert truth for ThursdayNIU3 Run 16.5m/3sec -- ##
@@ -928,9 +916,9 @@ Thursday_NIU3_Run16_3  <- locomotionFMPtruth(FMPThursdayNIU3, eventIntensity = "
                                              endTime = as.numeric(lubridate::as_datetime("2022-02-17 11:15:16 UTC")))
 
 
-Thursday_NIU3_Run16 <- rbind(Thursday_NIU3_Run16_1,
-                             Thursday_NIU3_Run16_2,
-                             Thursday_NIU3_Run16_3)
+Thursday_NIU3_Run16 <- rbind(Thursday_NIU3_Run16_1 %>% mutate(iteration = 1),
+                             Thursday_NIU3_Run16_2 %>% mutate(iteration = 2),
+                             Thursday_NIU3_Run16_3 %>% mutate(iteration = 3))
 
 
 ## -- Insert truth for ThursdayNIU3 Run 18m/3sec -- ##
@@ -948,231 +936,55 @@ Thursday_NIU3_Run18_3  <- locomotionFMPtruth(FMPThursdayNIU3, eventIntensity = "
                                              endTime = as.numeric(lubridate::as_datetime("2022-02-17 11:18:59 UTC")))
 
 
-Thursday_NIU3_Run18 <- rbind(Thursday_NIU3_Run18_1,
-                             Thursday_NIU3_Run18_2,
-                             Thursday_NIU3_Run18_3)
+Thursday_NIU3_Run18 <- rbind(Thursday_NIU3_Run18_1 %>% mutate(iteration = 1),
+                             Thursday_NIU3_Run18_2 %>% mutate(iteration = 2),
+                             Thursday_NIU3_Run18_3 %>% mutate(iteration = 3))
 
 
 
-## -- All locomotions collected -- ##
-
-#binding all the respective locomotion types across data collections, to calculate the perc distribution
-# and the percentage agreement test.
 Walk <- rbind(Tuesday_NIU2_Walk,
-              Tuesday_NIU3_Walk)
+              Tuesday_NIU3_Walk) %>% 
+  mutate(drill = "Walking")
 
-Walk_perc <- Walk %>% 
-  count(locomotion) %>% 
-  mutate(perc = n/sum(n)*100)
-
-WalkAgree <- Walk %>% 
-  select(truth, locomotion) %>% 
-  irr::agree(.)
 
 Run10 <- rbind(Tuesday_NIU2_Run10,
                Tuesday_NIU3_Run10,
-               Wednesday_NIU1_Run10)
-
-Run10_perc <- Run10 %>% 
-  count(locomotion) %>% 
-  mutate(perc = n/sum(n)*100)
-
-Run10Agree <- Run10 %>% 
-  select(truth, locomotion) %>% 
-  irr::agree(.)
+               Wednesday_NIU1_Run10) %>% 
+  mutate(drill = "LinearRun10")
 
 Run15 <- rbind(Tuesday_NIU2_Run15,
                Tuesday_NIU3_Run15,
                Wednesday_NIU1_Run15,
                Thursday_NIU2_Run15,
-               Thursday_NIU3_Run15)
-
-Run15_perc <- Run15 %>% 
-  count(locomotion) %>% 
-  mutate(perc = n/sum(n)*100)
-
-Run15Agree <- Run15 %>% 
-  select(truth, locomotion) %>% 
-  irr::agree(.)
+               Thursday_NIU3_Run15) %>% 
+  mutate(drill = "LinearRun15")
 
 Run16 <- rbind(Wednesday_NIU1_Run16,
                Thursday_NIU2_Run16,
-               Thursday_NIU3_Run16)
-
-Run16_perc <- Run16 %>% 
-  count(locomotion) %>% 
-  mutate(perc = n/sum(n)*100)
-
-Run16Agree <- Run16 %>% 
-  select(truth, locomotion) %>% 
-  irr::agree(.)
+               Thursday_NIU3_Run16) %>% 
+  mutate(drill = "LinearRun16")
 
 Run18 <- rbind(Wednesday_NIU1_Run18,
                Thursday_NIU2_Run18,
-               Thursday_NIU3_Run18)
-
-Run18_perc <- Run18 %>% 
-  count(locomotion) %>% 
-  mutate(perc = n/sum(n)*100)
-
-Run18Agree <- Run18 %>% 
-  select(truth, locomotion) %>% 
-  irr::agree(.)
+               Thursday_NIU3_Run18) %>% 
+  mutate(drill = "LinearRun18")
 
 mediumDynamic <- rbind(Tuesday_NIU2_mediumDynamic,
                        Tuesday_NIU3_mediumDynamic,
-                       Tuesday_NIU3_mediumDynamic2)
-
-mediumDynamic_perc <- mediumDynamic %>% 
-  count(locomotion) %>% 
-  mutate(perc = n/sum(n)*100)
-
-mediumDynamicAgree <- mediumDynamic %>% 
-  select(truth, locomotion) %>% 
-  irr::agree(.)
+                       Tuesday_NIU3_mediumDynamic2) %>% 
+  mutate(drill = "DynamicMedium",
+         iteration = 1)
 
 highDynamic <- rbind(Tuesday_NIU2_highDynamic,
-                     Tuesday_NIU3_highDynamic)
-
-highDynamic_perc <- highDynamic %>% 
-  count(locomotion) %>% 
-  mutate(perc = n/sum(n)*100)
-
-highDynamicAgree <- highDynamic %>% 
-  select(truth, locomotion) %>% 
-  irr::agree(.)
+                     Tuesday_NIU3_highDynamic) %>% 
+  mutate(drill = "DynamicHigh",
+         iteration = 1) 
 
 highhalfDynamic <- rbind(Tuesday_NIU2_highHalf,
-                         Tuesday_NIU3_highHalf)
+                         Tuesday_NIU3_highHalf) %>% 
+  mutate(drill = "DynamicHighHalf",
+         iteration = 1)
 
-highhalfDynamic_perc <- highhalfDynamic %>% 
-  count(locomotion) %>% 
-  mutate(perc = n/sum(n)*100)
+mappedData <- list(Walk, Run10, Run15, Run16, Run18, mediumDynamic, highDynamic, highhalfDynamic)
 
-highhalfAgree <- highhalfDynamic %>% 
-  select(truth, locomotion) %>% 
-  irr::agree(.)
-
-
-## -- Overall agreeemnt accuracy -- ##
-totalAgreement <- 
-  data.frame(
-    event = c("Slow","Linear","Linear","Linear","Linear","Non-linear","Non-linear","Non-linear"),
-    velocity = c("5.4","12","18","19.6","21.6","3 sec per cone","All out (full circle)","All out (half circle)"),
-    total_time = c(WalkAgree$subjects, Run10Agree$subjects, Run15Agree$subjects,
-                   Run16Agree$subjects, Run18Agree$subjects, mediumDynamicAgree$subjects,
-                   highDynamicAgree$subjects, highhalfAgree$subjects),
-    agreement = c(WalkAgree$value, Run10Agree$value, Run15Agree$value,
-                  Run16Agree$value, Run18Agree$value, mediumDynamicAgree$value,
-                  highDynamicAgree$value, highhalfAgree$value)
-  )
-
-#data.table::fwrite(totalAgreement, "Data/ProcessedData/totalAgreement.csv")
-
-## -- Prepare data for a scatter pie plot -- ## 
-
-#Preparing the data to create a scatter pie plot
-#The drill will be used for the x-axis of the plot
-Tuesday_NIU2_Walk <- Tuesday_NIU2_Walk %>% mutate(drill = "Slow")
-Tuesday_NIU2_Run10 <- Tuesday_NIU2_Run10 %>% mutate(drill = "Linear10")
-Tuesday_NIU2_Run15 <- Tuesday_NIU2_Run15 %>% mutate(drill = "Linear15")
-Thursday_NIU2_Run15 <- Thursday_NIU2_Run15 %>% mutate(drill = "Linear15")
-Thursday_NIU2_Run16 <- Thursday_NIU2_Run16 %>% mutate(drill = "Linear16")
-Thursday_NIU2_Run18 <- Thursday_NIU2_Run18 %>% mutate(drill = "Linear18") 
-Tuesday_NIU2_mediumDynamic <- Tuesday_NIU2_mediumDynamic %>% mutate(drill = "NonLinearSlow")
-Tuesday_NIU2_highDynamic <- Tuesday_NIU2_highDynamic %>% mutate(drill = "NonLinearFast")
-Tuesday_NIU2_highHalf <- Tuesday_NIU2_highHalf %>% mutate(drill = "NonLinearHalf")
-
-Tuesday_NIU3_Walk <- Tuesday_NIU3_Walk %>% mutate(drill = "Slow")
-Tuesday_NIU3_Run10 <- Tuesday_NIU3_Run10 %>% mutate(drill = "Linear10")
-Tuesday_NIU3_Run15 <- Tuesday_NIU3_Run15 %>% mutate(drill = "Linear15")
-Thursday_NIU3_Run15 <- Thursday_NIU3_Run15 %>% mutate(drill = "Linear15")
-Thursday_NIU3_Run16 <- Thursday_NIU3_Run16 %>% mutate(drill = "Linear16")
-Thursday_NIU3_Run18 <- Thursday_NIU3_Run18 %>% mutate(drill = "Linear18") 
-Tuesday_NIU3_mediumDynamic <- Tuesday_NIU3_mediumDynamic %>% mutate(drill = "NonLinearSlow")
-Tuesday_NIU3_highDynamic <- Tuesday_NIU3_highDynamic %>% mutate(drill = "NonLinearFast")
-Tuesday_NIU3_highHalf <- Tuesday_NIU3_highHalf %>% mutate(drill = "NonLinearHalf")
-
-Wednesday_NIU1_Run10 <- Wednesday_NIU1_Run10 %>% mutate(drill = "Linear10")
-Wednesday_NIU1_Run15 <- Wednesday_NIU1_Run15 %>% mutate(drill = "Linear15")
-Wednesday_NIU1_Run16 <- Wednesday_NIU1_Run16 %>% mutate(drill = "Linear16")
-Wednesday_NIU1_Run18 <- Wednesday_NIU1_Run18 %>% mutate(drill = "Linear18")
-
-controlledDrills <- rbind(Tuesday_NIU2_Walk, Tuesday_NIU2_Run10, Tuesday_NIU2_Run15, Thursday_NIU2_Run15, 
-                          Thursday_NIU2_Run16, Thursday_NIU2_Run18, Tuesday_NIU2_mediumDynamic, Tuesday_NIU2_highDynamic,
-                          Tuesday_NIU2_highHalf, Tuesday_NIU3_Walk, Tuesday_NIU3_Run10, Tuesday_NIU3_Run15, 
-                          Thursday_NIU3_Run15, Thursday_NIU3_Run16, Thursday_NIU3_Run18, Tuesday_NIU3_mediumDynamic,
-                          Tuesday_NIU3_highDynamic, Tuesday_NIU3_highHalf, Wednesday_NIU1_Run10, Wednesday_NIU1_Run15,
-                          Wednesday_NIU1_Run16, Wednesday_NIU1_Run18)
-
-
-#Calculating the relative distribution of prediction for each drill for each athlete.
-#Additionally creating an x variable of random numbers between two values, to create some jitter
-#to seperate each pieplot on the x-axis. 
-set.seed(123)
-plotData <- controlledDrills %>% 
-  group_by(athlete, drill) %>% 
-  count(locomotion) %>% 
-  mutate(percen = (n / sum(n)*100)) %>% 
-  ungroup() %>% 
-  pivot_wider(id_cols = c(athlete, drill), names_from = locomotion, values_from = percen, values_fill = 0L) %>%
-  mutate(
-    #Creating random yitter for the x axis relative to the drill of interest so it doesn't overlap 
-    #in the scatterpie plot
-    x = case_when(
-      drill == "Slow" ~ runif(nrow(.), 0, 1),
-      drill == "Linear10" ~ runif(nrow(.), 1.1, 2),
-      drill == "Linear15" ~ runif(nrow(.), 2.1, 3),
-      drill == "Linear16" ~ runif(nrow(.), 3.1, 4),
-      drill == "Linear18" ~ runif(nrow(.), 4.1, 5),
-      drill == "NonLinearSlow" ~ runif(nrow(.), 5.1, 6),
-      drill == "NonLinearFast" ~ runif(nrow(.), 6.1, 7),
-      drill == "NonLinearHalf" ~ runif(nrow(.), 7.1, 8)
-    )) %>% 
-  group_by(athlete) %>% 
-  mutate(y = case_when(
-    drill == "Slow" ~ Walking/100,
-    drill == "Linear10" ~ Running/100,
-    drill == "Linear15" ~ Running/100,
-    drill == "Linear16" ~ Running/100,
-    drill == "Linear18" ~ Running/100,
-    drill == "NonLinearSlow" ~ Dynamic/100,
-    drill == "NonLinearFast" ~ Dynamic/100,
-    drill == "NonLinearHalf" ~ Dynamic/100)) %>% 
-  ungroup() %>% 
-  janitor::clean_names()
-
-
-ggthemr::ggthemr("greyscale")
-textSize = 8
-ggplot() +
-  scatterpie::geom_scatterpie(aes(x = x, y = y, group = athlete), data = plotData, alpha = 0.9,
-                              cols = c("dynamic","running","walking","no_locomotion"), 
-                              pie_scale = 0.5) +
-  geom_vline(xintercept = c(0,1,2,3,4,5,6,7,8), linetype = "dashed", color = "#838383", linewidth = 2, alpha = 0.75) + 
-  annotate("text", x = 0.5, y = 0, label = "5.4 km/h", size = textSize) +
-  annotate("text", x = 1.5, y = 0, label = "12 km/h", size = textSize) +
-  annotate("text", x = 2.5, y = 0, label = "18 km/h", size = textSize) +
-  annotate("text", x = 3.5, y = 0, label = "19.8 km/h", size = textSize) +
-  annotate("text", x = 4.5, y = 0, label = "21.6 km/h", size = textSize) +
-  annotate("text", x = 5.5, y = 0, label = "3 sec per cone", size = textSize) +
-  annotate("text", x = 6.5, y = 0, label = "All out", size = textSize) +
-  annotate("text", x = 7.5, y = 0, label = "All out - Half", size = textSize) +
-  coord_equal(ratio = 1.75) + 
-  scale_fill_manual(name = "Locomotion type",
-                    values=c("no_locomotion"="#313131", "walking"="#0f3698", 
-                             "dynamic"="#94281b", "running"="#3c8001"),
-                    labels = c("No Locomotion", "Slow Locomotion", "Non-linear Locomotion", "Linear Locomotion")) +
-  scale_y_continuous(breaks = seq(0,100,20) / 100,
-                     labels = c("0","20","40","60","80","100")) +
-  theme(legend.position = "top",
-        text = element_text(size = 33),
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank()) + 
-  xlab("Controlled Drill") + 
-  ylab("Correct prediction [%]")
-
-#ggsave("scatterPiePlot.png", width = 25, height = 15, dpi = 500)
-
-
-
+saveRDS(mappedData, file = "Data/ProcessedData/mappedData.Rds")
