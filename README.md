@@ -6,9 +6,11 @@ Code for the validation of locomotion categories based on inertial measurement u
 
 The code consist of four .r files. Two contains the main code (01 and 02) and two are functions.
  * **01-DataClearning.R** imports, cleans and maps the data to the correct participants.
- * **02-ValidateLocomotion.R** Prepares the data for percent agreement test and validates the locomotion categories
+ * **02-MappingDrills.R** Mapping the data to the correct date times of the executed drills.
+ * **03-Statistics_and_visualisation.R** Calculates the %-agreement and creates visualisations such as confusion matrices and scatter-pie plots.
  * **cleanFMPdata.R:** Function used for to clean the provided football movement profile data
- * **extractAthleteName.R:** To secure correct mapping of the players for each data collection, a script was created to extract the names.
+ * **extractAthleteName.R:** Function to secure correct mapping of the players for each data collection, a script was created to extract the names.
+ * **PrettyConfusionMatrix.R** Function to create a pretty confusion matrix
  
 ## Abstract
 In sports like football, knowledge concerning physical demands is used for training sessions and matches. 
