@@ -1,8 +1,7 @@
 # ValidationOfFootballLocomotionCategories
 Code for the validation of locomotion categories based on inertial measurement units
 
-**Lentz-Nielsen, Nicki**., Madeleine, Pascal (2022), Validation of football locomotion categories derived from inertial measurements
-*Under peer-review*
+**Lentz-Nielsen, N.**, Madeleine, P. Validation of football locomotion categories derived from inertial measurements. Sports Eng 26, 26 (2023). https://doi.org/10.1007/s12283-023-00414-8
 
 The code consist of four .r files. Three contains the main code (01,02,03) and three are functions.
  * **01-DataClearning.R** imports, cleans and maps the data to the correct participants.
